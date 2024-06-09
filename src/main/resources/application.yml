@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  mvc:
+    servlet:
+      path: /app
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
