@@ -3,13 +3,11 @@ package com.example.layeredarchexample.presentation.controller;
 
 import com.example.layeredarchexample.application.service.ProductService;
 import com.example.layeredarchexample.presentation.dto.NewProductDTO;
+import com.example.layeredarchexample.presentation.dto.ProductDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -27,5 +25,12 @@ public class ProductController {
         return ResponseEntity.created(URI.create(uri)).build();
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
+        return productService.getProduct(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 }

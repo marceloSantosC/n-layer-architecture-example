@@ -2,6 +2,7 @@ package com.example.layeredarchexample.application.mapper;
 
 import com.example.layeredarchexample.data.entity.ProductEntity;
 import com.example.layeredarchexample.presentation.dto.NewProductDTO;
+import com.example.layeredarchexample.presentation.dto.ProductDTO;
 
 public class ProductMapper {
 
@@ -15,4 +16,13 @@ public class ProductMapper {
 
     }
 
+    public static ProductDTO productEntityToProductDTO(ProductEntity entity) {
+        return ProductDTO.builder()
+                .id(entity.getId())
+                .color(entity.getColor())
+                .name(entity.getName())
+                .quantity(entity.getQuantity())
+                .price(entity.getPrice())
+                .build();
+    }
 }

@@ -5,9 +5,12 @@ import com.example.layeredarchexample.application.mapper.ProductMapper;
 import com.example.layeredarchexample.data.entity.ProductEntity;
 import com.example.layeredarchexample.data.repository.ProductRepository;
 import com.example.layeredarchexample.presentation.dto.NewProductDTO;
+import com.example.layeredarchexample.presentation.dto.ProductDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -26,6 +29,10 @@ public class ProductService {
         ProductEntity product = ProductMapper.newProductDTOToProductEntity(newProductDTO);
         productRepository.save(product);
         return product.getId();
+    }
+
+    public Optional<ProductDTO> getProduct(Long id) {
+        return productRepository.findById(id).map(ProductMapper::productEntityToProductDTO);
     }
 
 }
